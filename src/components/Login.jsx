@@ -1,43 +1,38 @@
 import React from "react";
 
-class Login extends React.Component {
-	state = {
-		name: "",
-		error: "",
-	};
+export default function Login() {
+	const [name, setName] = useState("");
+	const [error, setError] = useState("");
 
 	handleChangeInput = (event) => {
-		this.setState({ name: event.target.value, error: "" });
+		setName({ name: event.target.value, error: "" });
 	};
+
 	handleSubmit = (event) => {
 		event.preventDefault();
-		if (this.state.name) {
-			this.props.onSubmit(this.state.name);
+		if (name) {
+			onSubmit(name);
 		} else {
-			this.setState({
+			setError({
 				error: "Please provide a name",
 			});
 		}
 	};
 
-	render() {
-		return (
-			<>
-				<h1>Please Login</h1>
-				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="name">Name: </label>
-					<input
-						type="text"
-						value={this.state.name}
-						onChange={(event) => this.handleChangeInput(event)}
-						placeholder="Mary Poppins"
-					/>
-					<button type="submit">Log in</button>
-					<p>{this.state.error}</p>
-				</form>
-			</>
-		);
-	}
+	return (
+		<>
+			<h1>Please Login</h1>
+			<form onSubmit={handleSubmit}>
+				<label htmlFor="name">Name: </label>
+				<input
+					type="text"
+					value={name}
+					onChange={(event) => handleChangeInput(event)}
+					placeholder="Mary Poppins"
+				/>
+				<button type="submit">Log in</button>
+				<p>{error}</p>
+			</form>
+		</>
+	);
 }
-
-export default Login;

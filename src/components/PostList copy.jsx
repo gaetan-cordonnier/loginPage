@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PostList({ posts }) {
+function PostList({ posts }) {
 	return (
 		<ul>
 			{posts.slice(0, 5).map((post) => {
@@ -9,3 +9,5 @@ export default function PostList({ posts }) {
 		</ul>
 	);
 }
+
+export default PostList;
